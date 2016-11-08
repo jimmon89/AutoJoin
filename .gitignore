@@ -11,6 +11,7 @@ build/
 gradle/wrapper/*.jar
 tmp/
 run/
+classes/
 .idea/
 *.ipr
 *.tmp
