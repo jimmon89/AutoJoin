@@ -36,18 +36,18 @@ public class ThreadPingServer extends Thread {
 			
 			@Override
 			public void handleServerInfo(S00PacketServerInfo packet) {
-				ServerStatusResponse response = packet.func_149294_c();
+				ServerStatusResponse response = packet.getResponse();
 				
 				String version = "???";
 				int protocol = 0;
 				int curPlayers = -1, maxPlayers = -1;
-				if (response.func_151322_c() != null) {
-					protocol = response.func_151322_c().func_151304_b();
-					version = response.func_151322_c().func_151303_a();
+				if (response.getProtocolVersionInfo() != null) {
+					protocol = response.getProtocolVersionInfo().getProtocol();
+					version = response.getProtocolVersionInfo().getName();
 				}
-				if (response.func_151318_b() != null) {
-					curPlayers = response.func_151318_b().func_151333_b();
-					maxPlayers = response.func_151318_b().func_151332_a();
+				if (response.getPlayerCountData() != null) {
+					curPlayers = response.getPlayerCountData().getOnlinePlayerCount();
+					maxPlayers = response.getPlayerCountData().getMaxPlayers();
 				}
 				
 				if (protocol != AutoJoin.PROTOCOL_VER)
@@ -70,20 +70,11 @@ public class ThreadPingServer extends Thread {
 				if (!received)
 					screen.pingFail(p_147231_1_.getFormattedText());
 			}
-
-			@Override
-			public void onConnectionStateTransition(EnumConnectionState p_147232_1_, EnumConnectionState p_147232_2_) {
-				if (p_147232_2_ != EnumConnectionState.STATUS)
-					throw new UnsupportedOperationException("Unexpected change in protocol to " + p_147232_2_);
-			}
-
-			@Override
-			public void onNetworkTick() { }
 		});
 
 		try {
-			manager.scheduleOutboundPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.STATUS));
-			manager.scheduleOutboundPacket(new C00PacketServerQuery());
+			manager.sendPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.STATUS));
+			manager.sendPacket(new C00PacketServerQuery());
 			screen.setManager(manager);
 		}
 		catch (Throwable throwable) {

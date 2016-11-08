@@ -69,8 +69,8 @@ public class AutoJoin {
 				mc.displayGuiScreen(autoJoinScreen);
 				new ThreadConnectToServer(autoJoinScreen, lastServer).start();
 			}
-			if (guiCache instanceof GuiConnecting && mc.func_147104_D() != null) /*getServerData*/
-				lastServer = ServerInfo.from(mc.func_147104_D());
+			if (guiCache instanceof GuiConnecting && mc.getCurrentServerData() != null)
+				lastServer = ServerInfo.from(mc.getCurrentServerData());
 			if (guiCache instanceof GuiMainMenu)
 				resetCache();
 		}
@@ -81,7 +81,7 @@ public class AutoJoin {
 		if (event.isLocal)
 			resetCache();
 		else
-			lastServer = ServerInfo.from((InetSocketAddress) event.manager.getSocketAddress());
+			lastServer = ServerInfo.from((InetSocketAddress) event.manager.getRemoteAddress());
 	}
 	
 	public AJConfig getConfig() {
