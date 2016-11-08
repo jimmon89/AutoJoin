@@ -1,5 +1,9 @@
 package com.mcf.davidee.guilib.vanilla.items;
 
+// TODO Update this class
+@Deprecated
+public class ItemButton{}
+/*
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +28,7 @@ import com.mcf.davidee.guilib.core.Widget;
  * 
  * Note that items use zLevel for rendering - change zLevel as needed.
  *
- */
+ *
 
 public class ItemButton extends Button implements Shiftable {
 
@@ -57,7 +61,7 @@ public class ItemButton extends Button implements Shiftable {
 
 	/**
 	 * Draws the item or string "Air" if stack.getItem() is null
-	 */
+	 *
 	@Override
 	public void draw(int mx, int my) {
 		hover = inBounds(mx, my);
@@ -72,13 +76,13 @@ public class ItemButton extends Button implements Shiftable {
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 			itemRenderer.zLevel = this.zLevel;
-			itemRenderer.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.getTextureManager(), item, x + 1, y + 1);
+			itemRenderer.renderItemAndEffectIntoGUI(mc.fontRendererObj, mc.getTextureManager(), item, x + 1, y + 1);
 			itemRenderer.zLevel = 0;
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 			RenderHelper.disableStandardItemLighting();
 		}
 		else //Air
-			drawString(mc.fontRenderer, "Air" , x + 3, y + 5, -1);
+			drawString(mc.fontRendererObj, "Air" , x + 3, y + 5, -1);
 	}
 
 
@@ -92,3 +96,4 @@ public class ItemButton extends Button implements Shiftable {
 		this.y += dy;
 	}
 }
+*/
