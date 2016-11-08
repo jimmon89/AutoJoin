@@ -8,12 +8,12 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.handshake.client.C00Handshake;
-import net.minecraft.network.login.client.C00PacketLoginStart;
 
 import com.mcf.davidee.autojoin.AJLoginHandler;
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerInfo;
 import com.mcf.davidee.autojoin.gui.AutoJoinScreen;
+import net.minecraft.network.login.client.CPacketLoginStart;
 
 public class ThreadConnectToServer extends Thread {
 	
@@ -32,11 +32,11 @@ public class ThreadConnectToServer extends Thread {
 		try {
 			if (screen.isCancelled())
 				return;
-			NetworkManager manager = NetworkManager.func_181124_a(InetAddress.getByName(info.ip), info.port, true);
+			NetworkManager manager = NetworkManager.createNetworkManagerAndConnect(InetAddress.getByName(info.ip), info.port, true);
 			//TODO change this back to the AJ screen?
 			manager.setNetHandler(new AJLoginHandler(manager, mc, (GuiScreen)null));
 			manager.sendPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.LOGIN));
-            manager.sendPacket(new C00PacketLoginStart(mc.getSession().getProfile()));
+            manager.sendPacket(new CPacketLoginStart(mc.getSession().getProfile()));
             screen.setManager(manager);
 		}
 		catch(Exception e) {

@@ -4,9 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.network.NetHandlerLoginClient;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.util.IChatComponent;
 
 import com.mcf.davidee.autojoin.gui.AutoJoinScreen;
+import net.minecraft.util.text.ITextComponent;
 
 public class AJLoginHandler extends NetHandlerLoginClient {
 
@@ -14,7 +14,7 @@ public class AJLoginHandler extends NetHandlerLoginClient {
 		super(manager, mc, screen);
 	}
 	
-	public void onDisconnect(IChatComponent message) {
+	public void onDisconnect(ITextComponent message) {
 		Minecraft mc = Minecraft.getMinecraft();
 		
 		if (mc.currentScreen instanceof AutoJoinScreen)

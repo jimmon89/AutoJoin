@@ -8,15 +8,15 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.ServerStatusResponse;
 import net.minecraft.network.handshake.client.C00Handshake;
 import net.minecraft.network.status.INetHandlerStatusClient;
-import net.minecraft.network.status.client.C00PacketServerQuery;
-import net.minecraft.network.status.server.S00PacketServerInfo;
-import net.minecraft.network.status.server.S01PacketPong;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerInfo;
 import com.mcf.davidee.autojoin.gui.AutoJoinScreen;
+import net.minecraft.network.status.client.CPacketServerQuery;
+import net.minecraft.network.status.server.SPacketPong;
+import net.minecraft.network.status.server.SPacketServerInfo;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class ThreadPingServer extends Thread {
 
@@ -29,25 +29,25 @@ public class ThreadPingServer extends Thread {
 	}
 
 	public void newRun() throws UnknownHostException {
-		final NetworkManager manager = NetworkManager.func_181124_a(InetAddress.getByName(info.ip), info.port, true);
+		final NetworkManager manager = NetworkManager.createNetworkManagerAndConnect(InetAddress.getByName(info.ip), info.port, true);
 		manager.setNetHandler(new INetHandlerStatusClient() {
 
 			private boolean received = false;
 			
 			@Override
-			public void handleServerInfo(S00PacketServerInfo packet) {
+			public void handleServerInfo(SPacketServerInfo packet) {
 				ServerStatusResponse response = packet.getResponse();
 				
 				String version = "???";
 				int protocol = 0;
 				int curPlayers = -1, maxPlayers = -1;
-				if (response.getProtocolVersionInfo() != null) {
-					protocol = response.getProtocolVersionInfo().getProtocol();
-					version = response.getProtocolVersionInfo().getName();
+				if (response.getVersion() != null) {
+					protocol = response.getVersion().getProtocol();
+					version = response.getVersion().getName();
 				}
-				if (response.getPlayerCountData() != null) {
-					curPlayers = response.getPlayerCountData().getOnlinePlayerCount();
-					maxPlayers = response.getPlayerCountData().getMaxPlayers();
+				if (response.getPlayers() != null) {
+					curPlayers = response.getPlayers().getOnlinePlayerCount();
+					maxPlayers = response.getPlayers().getMaxPlayers();
 				}
 				
 				if (protocol != AutoJoin.PROTOCOL_VER)
@@ -61,12 +61,12 @@ public class ThreadPingServer extends Thread {
 			}
 
 			@Override
-			public void handlePong(S01PacketPong packet) {
-				manager.closeChannel(new ChatComponentText("Finished"));
+			public void handlePong(SPacketPong packet) {
+				manager.closeChannel(new TextComponentString("Finished"));
 			}
 
 			@Override
-			public void onDisconnect(IChatComponent p_147231_1_) {
+			public void onDisconnect(ITextComponent p_147231_1_) {
 				if (!received)
 					screen.pingFail(p_147231_1_.getFormattedText());
 			}
@@ -74,7 +74,7 @@ public class ThreadPingServer extends Thread {
 
 		try {
 			manager.sendPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.STATUS));
-			manager.sendPacket(new C00PacketServerQuery());
+			manager.sendPacket(new CPacketServerQuery());
 			screen.setManager(manager);
 		}
 		catch (Throwable throwable) {

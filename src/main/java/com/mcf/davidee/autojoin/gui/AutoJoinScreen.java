@@ -8,8 +8,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.handshake.client.C00Handshake;
-import net.minecraft.network.login.client.C00PacketLoginStart;
-import net.minecraft.util.ChatComponentText;
 
 import com.mcf.davidee.autojoin.AJLoginHandler;
 import com.mcf.davidee.autojoin.AutoJoin;
@@ -22,6 +20,7 @@ import com.mcf.davidee.guilib.basic.Label;
 import com.mcf.davidee.guilib.core.Button;
 import com.mcf.davidee.guilib.core.Container;
 import com.mcf.davidee.guilib.vanilla.ButtonVanilla;
+import net.minecraft.util.text.TextComponentString;
 
 public class AutoJoinScreen extends BasicScreen {
 
@@ -115,7 +114,7 @@ public class AutoJoinScreen extends BasicScreen {
 	public void close() {
 		this.cancelled = true;
 		if (manager != null) {
-			manager.closeChannel(new ChatComponentText("Aborted"));
+			manager.closeChannel(new TextComponentString("Aborted"));
 			manager = null;
 		}
 		AutoJoin.instance.resetCache();

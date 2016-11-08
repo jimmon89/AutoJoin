@@ -78,10 +78,10 @@ public class AutoJoin {
 	
 	@SubscribeEvent
 	public void connectedToServer(ClientConnectedToServerEvent event) {
-		if (event.isLocal)
+		if (event.isLocal())
 			resetCache();
 		else
-			lastServer = ServerInfo.from((InetSocketAddress) event.manager.getRemoteAddress());
+			lastServer = ServerInfo.from((InetSocketAddress) event.getManager().getRemoteAddress());
 	}
 	
 	public AJConfig getConfig() {

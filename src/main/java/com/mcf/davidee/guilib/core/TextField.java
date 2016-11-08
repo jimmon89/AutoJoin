@@ -3,9 +3,9 @@ package com.mcf.davidee.guilib.core;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.util.MathHelper;
 
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 import com.mcf.davidee.guilib.focusable.FocusableWidget;
@@ -112,7 +112,7 @@ public abstract class TextField extends FocusableWidget {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
 		GL11.glLogicOp(GL11.GL_OR_REVERSE);
-		WorldRenderer renderer = tessellator.getWorldRenderer();
+		VertexBuffer renderer = tessellator.getBuffer();
 		renderer.begin(7, renderer.getVertexFormat());
 		renderer.pos((double) x1, (double) y2, 0.0D);
 		renderer.pos((double) x2, (double) y2, 0.0D);

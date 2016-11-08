@@ -3,7 +3,6 @@ package com.mcf.davidee.autojoin.gui;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.MathHelper;
 
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerSetting;
@@ -17,6 +16,7 @@ import com.mcf.davidee.guilib.core.TextField;
 import com.mcf.davidee.guilib.vanilla.ButtonVanilla;
 import com.mcf.davidee.guilib.vanilla.TextFieldVanilla;
 import com.mcf.davidee.guilib.vanilla.TextFieldVanilla.VanillaFilter;
+import net.minecraft.util.math.MathHelper;
 
 public class PropertiesScreen extends BasicScreen {
 	
