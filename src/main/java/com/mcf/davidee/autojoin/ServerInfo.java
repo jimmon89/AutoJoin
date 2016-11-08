@@ -20,7 +20,7 @@ public class ServerInfo {
 	}
 	
 	public static ServerInfo from(ServerData data) {
-		ServerAddress address = ServerAddress.func_78860_a(data.serverIP); /*getServerAddress*/
+		ServerAddress address = ServerAddress.fromString(data.serverIP);
 		return new ServerInfo(address.getIP(), address.getPort());
 	}
 	
