@@ -1,17 +1,17 @@
 package com.mcf.davidee.guilib;
 
-import java.util.Arrays;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import java.util.Arrays;
 
 @Mod(modid = "guilib", name = "GUI Library", version = "1.0.7.10")
 public class GuiLibrary {
 
 	
-	@EventHandler 
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ModMetadata modMeta = event.getModMetadata();
 		modMeta.authorList = Arrays.asList(new String[] { "Davidee" });
