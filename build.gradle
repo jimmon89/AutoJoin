@@ -49,7 +49,7 @@ sourceSets {
             srcDirs += 'GuiLib/src/main/java'
         }
         resources {
-            srcDirs += 'GuiLib/src/main/resources'
+            srcDirs = ['GuiLib/src/main/resources', 'src/main/resources']
         }
     }
 }
