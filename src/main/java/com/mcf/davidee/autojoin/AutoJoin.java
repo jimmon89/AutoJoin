@@ -26,8 +26,8 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToSe
 @Mod(modid="AutoJoin", name="Auto Join", version=AutoJoin.VERSION, dependencies="after:guilib")
 public class AutoJoin {
 	
-	public static final int PROTOCOL_VER = 107;
-	public static final String VERSION = "1.9.0.0";
+	public static final int PROTOCOL_VER = 110;
+	public static final String VERSION = "1.9.4.0";
 	
 	@Instance("AutoJoin")
 	public static AutoJoin instance;
