@@ -45,11 +45,10 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs += 'GuiLib/src'
+            srcDirs += 'GuiLib/src/main/java'
         }
         resources {
-            srcDirs += 'GuiLib/src'
-            exclude 'com/**'
+            srcDirs += 'GuiLib/src/main/resources'
         }
     }
 }
