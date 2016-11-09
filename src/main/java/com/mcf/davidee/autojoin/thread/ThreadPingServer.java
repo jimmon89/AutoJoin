@@ -29,7 +29,7 @@ public class ThreadPingServer extends Thread {
 	}
 
 	public void newRun() throws UnknownHostException {
-		final NetworkManager manager = NetworkManager.func_181124_a(InetAddress.getByName(info.ip), info.port, screen.mc.gameSettings.func_181148_f());
+		final NetworkManager manager = NetworkManager.createNetworkManagerAndConnect(InetAddress.getByName(info.ip), info.port, screen.mc.gameSettings.isUsingNativeTransport());
 		manager.setNetHandler(new INetHandlerStatusClient() {
 
 			private boolean received = false;
