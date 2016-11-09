@@ -36,7 +36,7 @@ public class ThreadPingServer extends Thread {
 			
 			@Override
 			public void handleServerInfo(S00PacketServerInfo packet) {
-				ServerStatusResponse response = packet.func_149294_c();
+				ServerStatusResponse response = packet.getResponse();
 				
 				String version = "???";
 				int protocol = 0;
@@ -70,20 +70,11 @@ public class ThreadPingServer extends Thread {
 				if (!received)
 					screen.pingFail(p_147231_1_.getFormattedText());
 			}
-
-			@Override
-			public void onConnectionStateTransition(EnumConnectionState p_147232_1_, EnumConnectionState p_147232_2_) {
-				if (p_147232_2_ != EnumConnectionState.STATUS)
-					throw new UnsupportedOperationException("Unexpected change in protocol to " + p_147232_2_);
-			}
-
-			@Override
-			public void onNetworkTick() { }
 		});
 
 		try {
-			manager.scheduleOutboundPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.STATUS));
-			manager.scheduleOutboundPacket(new C00PacketServerQuery());
+			manager.sendPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.STATUS));
+			manager.sendPacket(new C00PacketServerQuery());
 			screen.setManager(manager);
 		}
 		catch (Throwable throwable) {
