@@ -27,7 +27,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 public class AutoJoin {
 	
 	public static final int PROTOCOL_VER = 4;
-	public static final String VERSION = "1.7.2.0";
+	public static final String VERSION = "1.7.10.0";
 	
 	@Instance("AutoJoin")
 	public static AutoJoin instance;
