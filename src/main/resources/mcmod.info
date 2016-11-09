@@ -2,13 +2,13 @@
 {
   "modid": "AutoJoin",
   "name": "Auto Join",
-  "description": "",
+  "description": "Easily join a populated public server.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "http://www.minecraftforum.net/topic/1922957-/",
   "updateUrl": "",
   "authorList": ["Davidee"],
-  "credits": "",
+  "credits": "Thanks to Mojang, Forge, and all your support.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": ["guilib"]
