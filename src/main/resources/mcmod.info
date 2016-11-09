@@ -1,0 +1,16 @@
+[
+{
+  "modid": "AutoJoin",
+  "name": "Auto Join",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Davidee"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["guilib"]
+}
+]
