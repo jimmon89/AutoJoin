@@ -42,6 +42,18 @@ dependencies {
 
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs += 'GuiLib/src'
+        }
+        resources {
+            srcDirs += 'GuiLib/src'
+            exclude 'com/**'
+        }
+    }
+}
+
 processResources
 {
     // this will ensure that this task is redone when the versions change.
