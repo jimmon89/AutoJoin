@@ -41,13 +41,13 @@ public class ThreadPingServer extends Thread {
 				String version = "???";
 				int protocol = 0;
 				int curPlayers = -1, maxPlayers = -1;
-				if (response.func_151322_c() != null) {
-					protocol = response.func_151322_c().func_151304_b();
-					version = response.func_151322_c().func_151303_a();
+				if (response.getProtocolVersionInfo() != null) {
+					protocol = response.getProtocolVersionInfo().getProtocol();
+					version = response.getProtocolVersionInfo().getName();
 				}
-				if (response.func_151318_b() != null) {
-					curPlayers = response.func_151318_b().func_151333_b();
-					maxPlayers = response.func_151318_b().func_151332_a();
+				if (response.getPlayerCountData() != null) {
+					curPlayers = response.getPlayerCountData().getOnlinePlayerCount();
+					maxPlayers = response.getPlayerCountData().getMaxPlayers();
 				}
 				
 				if (protocol != AutoJoin.PROTOCOL_VER)

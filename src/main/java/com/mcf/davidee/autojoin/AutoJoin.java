@@ -26,7 +26,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 @Mod(modid="AutoJoin", name="Auto Join", version=AutoJoin.VERSION, dependencies="after:guilib")
 public class AutoJoin {
 	
-	public static final int PROTOCOL_VER = 4;
+	public static final int PROTOCOL_VER = 5;
 	public static final String VERSION = "1.7.10.0";
 	
 	@Instance("AutoJoin")
@@ -63,8 +63,8 @@ public class AutoJoin {
 			
 			if (guiCache instanceof GuiDisconnected && lastServer != null) 
 				mc.displayGuiScreen(new DisconnectedScreen(lastServer, (GuiDisconnected)guiCache));
-			if (guiCache instanceof GuiConnecting && mc.func_147104_D() != null) /*getServerData*/
-				lastServer = ServerInfo.from(mc.func_147104_D());
+			if (guiCache instanceof GuiConnecting && mc.getCurrentServerData() != null) /*getServerData*/
+				lastServer = ServerInfo.from(mc.getCurrentServerData());
 			if (guiCache instanceof GuiMainMenu)
 				resetCache();
 		}
@@ -75,7 +75,7 @@ public class AutoJoin {
 		if (event.isLocal)
 			resetCache();
 		else
-			lastServer = ServerInfo.from((InetSocketAddress) event.manager.getSocketAddress());
+			lastServer = ServerInfo.from((InetSocketAddress) event.manager.getRemoteAddress());
 	}
 	
 	public AJConfig getConfig() {

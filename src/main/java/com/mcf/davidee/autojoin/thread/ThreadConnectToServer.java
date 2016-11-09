@@ -32,9 +32,9 @@ public class ThreadConnectToServer extends Thread {
 				return;
 			NetworkManager manager = NetworkManager.provideLanClient(InetAddress.getByName(info.ip), info.port);
 			//TODO change this back to the AJ screen?
-			manager.setNetHandler(new AJLoginHandler(manager, mc, new GuiMainMenu()));
+			manager.setNetHandler(new AJLoginHandler(manager, mc, null));
 			manager.scheduleOutboundPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.LOGIN));
-            manager.scheduleOutboundPacket(new C00PacketLoginStart(mc.getSession().func_148256_e()));
+            manager.scheduleOutboundPacket(new C00PacketLoginStart(mc.getSession().getProfile()));
             screen.setManager(manager);
 		}
 		catch(Exception e) {
