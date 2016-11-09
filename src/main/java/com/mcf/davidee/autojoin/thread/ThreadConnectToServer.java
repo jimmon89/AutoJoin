@@ -30,7 +30,7 @@ public class ThreadConnectToServer extends Thread {
 		try {
 			if (screen.isCancelled())
 				return;
-			NetworkManager manager = NetworkManager.provideLanClient(InetAddress.getByName(info.ip), info.port);
+			NetworkManager manager = NetworkManager.func_181124_a(InetAddress.getByName(info.ip), info.port, mc.gameSettings.func_181148_f());
 			//TODO change this back to the AJ screen?
 			manager.setNetHandler(new AJLoginHandler(manager, mc, null));
 			manager.sendPacket(new C00Handshake(AutoJoin.PROTOCOL_VER, info.ip, info.port, EnumConnectionState.LOGIN));
