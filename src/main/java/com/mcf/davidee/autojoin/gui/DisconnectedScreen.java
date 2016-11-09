@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerInfo;
@@ -18,7 +18,7 @@ public class DisconnectedScreen extends GuiScreen {
 	private final ServerInfo info;
 
 	public String errorMessage;
-	public IChatComponent errorDetail;
+	public ITextComponent errorDetail;
 	
 	@SuppressWarnings("rawtypes")
 	public List list;
@@ -34,7 +34,7 @@ public class DisconnectedScreen extends GuiScreen {
 			for (Field f : fields)
 				f.setAccessible(true);
 			errorMessage = (String) fields[0].get(disconnected);
-			errorDetail = (IChatComponent) fields[1].get(disconnected);
+			errorDetail = (ITextComponent) fields[1].get(disconnected);
 			list = (List)  fields[2].get(disconnected);
 			parent = (GuiScreen) fields[3].get(disconnected);
 		}

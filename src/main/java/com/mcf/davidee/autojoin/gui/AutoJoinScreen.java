@@ -3,7 +3,7 @@ package com.mcf.davidee.autojoin.gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerInfo;
@@ -108,7 +108,7 @@ public class AutoJoinScreen extends BasicScreen {
 	public void close() {
 		this.cancelled = true;
 		if (manager != null) {
-			manager.closeChannel(new ChatComponentText("Aborted"));
+			manager.closeChannel(new TextComponentString("Aborted"));
 			manager = null;
 		}
 		AutoJoin.instance.resetCache();

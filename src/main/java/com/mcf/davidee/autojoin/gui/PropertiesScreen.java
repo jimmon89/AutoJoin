@@ -3,7 +3,7 @@ package com.mcf.davidee.autojoin.gui;
 import java.util.Arrays;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 
 import com.mcf.davidee.autojoin.AutoJoin;
 import com.mcf.davidee.autojoin.ServerSetting;
