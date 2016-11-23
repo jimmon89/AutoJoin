@@ -1,4 +1,4 @@
 [submodule "GuiLib"]
 	path = GuiLib
 	url = https://github.com/joserobjr/GuiLib.git
-	branch = master
+	branch = 1.7.2
