@@ -43,9 +43,9 @@ public class PropertiesScreen extends BasicScreen {
 	
 	@Override
 	public void close() {
-		setting.pingDelay = MathHelper.parseDoubleWithDefault(pingDelay.getText(), setting.pingDelay);
-		setting.errorDelay = MathHelper.parseDoubleWithDefault(errorDelay.getText(), setting.errorDelay);
-		setting.joinOffset = MathHelper.parseIntWithDefault(joinOffset.getText(), setting.joinOffset);
+		setting.pingDelay = MathHelper.getDouble(pingDelay.getText(), setting.pingDelay);
+		setting.errorDelay = MathHelper.getDouble(errorDelay.getText(), setting.errorDelay);
+		setting.joinOffset = MathHelper.getInt(joinOffset.getText(), setting.joinOffset);
 		AutoJoin.instance.getConfig().saveSetting(ip, setting);
 		super.close();
 	}
