@@ -47,23 +47,24 @@ public class DisconnectedScreen extends GuiScreen {
 
 	@SuppressWarnings("unchecked")
 	public void initGui() {
-		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 132, I18n.format("gui.toMenu")));
-		this.buttonList.add(new GuiButton(1, width /2 - 100, height/ 4 + 80, "Auto Join"));
-		this.buttonList.add(new GuiButton(2, width / 2 - 100, height / 4 + 106, "Auto Join Properties"));
-
-		this.list = this.fontRendererObj.listFormattedStringToWidth(errorDetail.getFormattedText(), this.width - 50);
+		//this.buttonList.clear();
+		//this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 132, I18n.format("gui.toMenu")));
+		//this.buttonList.add(new GuiButton(1, width /2 - 100, height/ 4 + 80, "Auto Join"));
+		//this.buttonList.add(new GuiButton(2, width / 2 - 100, height / 4 + 106, "Auto Join Properties"));
+		//this.list = this.fontRendererObj.listFormattedStringToWidth(errorDetail.getFormattedText(), this.width - 50);
+		mc.displayGuiScreen(new AutoJoinScreen(parent, info));
+		
 	}
 
 	protected void actionPerformed(GuiButton button) {
-		if (button.id == 0) {
-			mc.displayGuiScreen(parent);
-			AutoJoin.instance.resetCache();
-		}
-		if (button.id == 1)
+		//if (button.id == 0) {
+		//	mc.displayGuiScreen(parent);
+		//	AutoJoin.instance.resetCache();
+		//}
+		//if (button.id == 1)
 			mc.displayGuiScreen(new AutoJoinScreen(parent, info));
-		if (button.id == 2)
-			mc.displayGuiScreen(new PropertiesScreen(this, info.ip));
+		//if (button.id == 2)
+		//	mc.displayGuiScreen(new PropertiesScreen(this, info.ip));
 	}
 
 	@SuppressWarnings("rawtypes")
