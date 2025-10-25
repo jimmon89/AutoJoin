@@ -45,13 +45,15 @@ dependencies {
 
 }
 
+tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
 sourceSets {
     main {
         java {
             srcDirs += 'GuiLib/src/main/java'
         }
         resources {
-            srcDirs = ['GuiLib/src/main/resources', 'src/main/resources']
+            srcDirs += 'src/main/resources'
         }
     }
 }
@@ -62,6 +64,7 @@ processResources
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
+    
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
@@ -75,3 +78,4 @@ processResources
         exclude 'mcmod.info'
     }
 }
+

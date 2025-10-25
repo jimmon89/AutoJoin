@@ -1,0 +1,16 @@
+[
+{
+  "modid": "guilib",
+  "name": "GUI Library",
+  "description": "A small library for creating minecraft GUIs.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.minecraftforum.net/topic/1909236-/",
+  "updateUrl": "",
+  "authorList": ["Davidee"],
+  "credits": "Thanks to Mojang, Forge, and all your support.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
