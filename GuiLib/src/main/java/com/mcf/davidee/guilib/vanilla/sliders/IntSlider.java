@@ -1,6 +1,6 @@
 package com.mcf.davidee.guilib.vanilla.sliders;
 
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.MathHelper;
 
 import com.mcf.davidee.guilib.core.Slider;
 import com.mcf.davidee.guilib.vanilla.SliderVanilla;
@@ -49,12 +49,12 @@ public class IntSlider extends SliderVanilla {
 	}
 	
 	public static float getFloatValue(int val, int min, int max){
-		val = MathHelper.clamp(val, min, max);
+		val = MathHelper.clamp_int(val, min, max);
 		return (float)(val-min) / (max-min);
 	}
 	
 	public void setIntValue(int val) {
-		value = MathHelper.clamp(getFloatValue(val, minVal, maxVal), 0, 1);
+		value = MathHelper.clamp_float(getFloatValue(val, minVal, maxVal), 0, 1);
 	}
 	
 	public int getIntValue(){

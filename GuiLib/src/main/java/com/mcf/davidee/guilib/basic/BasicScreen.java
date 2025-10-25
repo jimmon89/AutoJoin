@@ -1,13 +1,12 @@
 package com.mcf.davidee.guilib.basic;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.MathHelper;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -83,7 +82,7 @@ public abstract class BasicScreen extends GuiScreen {
 	public void drawScreen(int mx, int my, float f) {
 		drawBackground();
 		List<Widget> overlays = new ArrayList<Widget>();
-		int scale = new ScaledResolution(mc).getScaleFactor();
+		int scale = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight).getScaleFactor();
 		for (Container c : containers)
 			overlays.addAll(c.draw(mx, my, scale));
 		for (Widget w : overlays)
@@ -123,14 +122,14 @@ public abstract class BasicScreen extends GuiScreen {
 	 * See {@link GuiScreen#handleMouseInput} for more information about mx and my.
 	 */
 	@Override
-	public void handleMouseInput() throws IOException {
+	public void handleMouseInput() {
 		super.handleMouseInput();
 		int delta = Mouse.getEventDWheel();
 		if (delta != 0) {
 			int mx = Mouse.getEventX() * this.width / this.mc.displayWidth;
 			int my = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
 			boolean handled = false;
-			delta = MathHelper.clamp(delta, -5, 5);
+			delta = MathHelper.clamp_int(delta, -5, 5);
 			
 			for (Container c : containers) {
 				if (c.inBounds(mx, my)) {

@@ -3,8 +3,7 @@ package com.mcf.davidee.guilib.core;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
@@ -107,18 +106,17 @@ public abstract class TextField extends FocusableWidget {
 			y2 = temp;
 		}
 		
-		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer renderer = tessellator.getBuffer();
+		Tessellator tessellator = Tessellator.instance;
 		GL11.glColor4f(0.0F, 0.0F, 255.0F, 255.0F);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
 		GL11.glLogicOp(GL11.GL_OR_REVERSE);
-		renderer.begin(7, renderer.getVertexFormat());
-		renderer.pos((double) x1, (double) y2, 0.0D);
-		renderer.pos((double) x2, (double) y2, 0.0D);
-		renderer.pos((double) x2, (double) y1, 0.0D);
-		renderer.pos((double) x1, (double) y1, 0.0D);
-		renderer.finishDrawing();
+		tessellator.startDrawingQuads();
+		tessellator.addVertex((double) x1, (double) y2, 0.0D);
+		tessellator.addVertex((double) x2, (double) y2, 0.0D);
+		tessellator.addVertex((double) x2, (double) y1, 0.0D);
+		tessellator.addVertex((double) x1, (double) y1, 0.0D);
+		tessellator.draw();
 		GL11.glDisable(GL11.GL_COLOR_LOGIC_OP);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
@@ -235,12 +233,12 @@ public abstract class TextField extends FocusableWidget {
 	}
 
 	public void setCursorPosition(int index) {
-		cursorPosition = MathHelper.clamp(index, 0, text.length());
+		cursorPosition = MathHelper.clamp_int(index, 0, text.length());
 		setSelectionPos(this.cursorPosition);
 	}
 
 	public void setSelectionPos(int index) {
-		index = MathHelper.clamp(index, 0, text.length());
+		index = MathHelper.clamp_int(index, 0, text.length());
 		selectionEnd = index;
 
 		if (charOffset > index)
@@ -257,7 +255,7 @@ public abstract class TextField extends FocusableWidget {
 		else if (index <= charOffset)
 			charOffset = index;
 
-		charOffset = MathHelper.clamp(charOffset, 0, text.length());
+		charOffset = MathHelper.clamp_int(charOffset, 0, text.length());
 	}
 
 	public boolean keyTyped(char par1, int par2) {
